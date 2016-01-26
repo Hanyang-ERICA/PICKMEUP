@@ -1,0 +1,42 @@
+-injars 'C:\Users\HaeSeok\AndroidStudioProjects\pickmeup-aws-my-sample-app-android\MySampleApp\app\build\intermediates\multi-dex\debug\allclasses.jar'
+-outjars 'C:\Users\HaeSeok\AndroidStudioProjects\pickmeup-aws-my-sample-app-android\MySampleApp\app\build\intermediates\multi-dex\debug\componentClasses.jar'
+
+-libraryjars 'C:\Users\HaeSeok\AppData\Local\Android\sdk2\build-tools\23.0.1\lib\shrinkedAndroid.jar'
+
+-forceprocessing
+-dontoptimize
+-dontobfuscate
+-dontpreverify
+-dontwarn
+-printconfiguration 'C:\Users\HaeSeok\AndroidStudioProjects\pickmeup-aws-my-sample-app-android\MySampleApp\app\build\intermediates\multi-dex\debug\components.flags'
+
+
+-keep class com.mysampleapp.Application {
+    <init>();
+    void attachBaseContext(android.content.Context);
+}
+
+-keep class com.mysampleapp.SplashActivity {
+    <init>();
+}
+
+-keep class com.mysampleapp.SignInActivity {
+    <init>();
+}
+
+-keep class com.mysampleapp.MainActivity {
+    <init>();
+}
+
+-keep class com.facebook.FacebookActivity {
+    <init>();
+}
+
+-keep public class * extends android.app.backup.BackupAgent {
+    <init>();
+}
+
+-keep public class * extends java.lang.annotation.Annotation {
+    <fields>;
+    <methods>;
+}

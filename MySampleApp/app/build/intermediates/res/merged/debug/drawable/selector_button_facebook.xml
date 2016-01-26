@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="false"
+          android:drawable="@mipmap/button_facebook"/>
+    <item android:state_pressed="true"
+        android:drawable="@mipmap/button_facebook_pressed"/>
+</selector>
+<!-- From: file:/C:/Users/HaeSeok/AndroidStudioProjects/pickmeup-aws-my-sample-app-android/MySampleApp/app/src/main/res/drawable/selector_button_facebook.xml -->
