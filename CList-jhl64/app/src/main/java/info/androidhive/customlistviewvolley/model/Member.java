@@ -2,14 +2,14 @@ package info.androidhive.customlistviewvolley.model;
 
 import java.util.ArrayList;
 
-public class Movie {
+public class Member {
 	private String catchphrase, imgurl, name, nameurl, company, age, height, weight, period, hobby, talent, comment;
 
-	public Movie() {
+	public Member() {
 	}
 
-	public Movie(String catchphrase, String imgurl, String name, String nameurl, String company, String age,
-				 String height, String weight, String period, String hobby, String talent, String comment) {
+	public Member(String catchphrase, String imgurl, String name, String nameurl, String company, String age,
+				  String height, String weight, String period, String hobby, String talent, String comment) {
 		this.catchphrase = catchphrase;
 		this.imgurl = imgurl;
 		this.name = name;

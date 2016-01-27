@@ -1,9 +1,6 @@
 package info.androidhive.customlistviewvolley.activity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,40 +8,25 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
-
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
-
-import info.androidhive.customlistviewvolley.R;
-import info.androidhive.customlistviewvolley.app.AppController;
 import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
 import com.facebook.share.model.ShareLinkContent;
-import com.facebook.share.model.SharePhoto;
-import com.facebook.share.model.SharePhotoContent;
-import com.facebook.share.widget.LikeView;
 import com.facebook.share.widget.ShareButton;
-
-import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.MutableData;
-import com.firebase.client.Transaction;
-
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+
+import info.androidhive.customlistviewvolley.R;
+import info.androidhive.customlistviewvolley.app.AppController;
+import info.androidhive.customlistviewvolley.util.CounterUtil;
 
 /**
  * Created by jaehalee on 2016. 1. 23..
@@ -249,53 +231,17 @@ public class DetailActivity extends FragmentActivity {
         }
 
         public void onButtonHateClick(View view) {
-
-            Firebase upvotesRef = new Firebase("https://produce101.firebaseio.com/members/" + name + "/hatecounter/");
-            //do something when button is clicked.
-            Toast toast = Toast.makeText(getApplicationContext(), "싫어요!", Toast.LENGTH_SHORT);
+            String message = "싫어요!";
+            CounterUtil.updateCounter("hatecounter", name);
+            Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
             toast.show();
-            upvotesRef.runTransaction(new Transaction.Handler() {
-                @Override
-                public Transaction.Result doTransaction(MutableData currentData) {
-                    if (currentData.getValue() == null) {
-                        currentData.setValue(1);
-                    } else {
-                        currentData.setValue((Long) currentData.getValue() + 1);
-                    }
-
-                    return Transaction.success(currentData); //we can also abort by calling Transaction.abort()
-                }
-
-                @Override
-                public void onComplete(FirebaseError firebaseError, boolean committed, DataSnapshot currentData) {
-                    //This method will be called once with the results of the transaction.
-                }
-            });
         }
 
         public void onButtonLikeClick(View view) {
-
-            Firebase upvotesRef = new Firebase("https://produce101.firebaseio.com/members/" + name + "/likecounter/");
-            //do something when button is clicked.
-            Toast toast = Toast.makeText(getApplicationContext(), "좋아요!", Toast.LENGTH_SHORT);
+            String message = "좋아요!";
+            CounterUtil.updateCounter("likecounter", name);
+            Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
             toast.show();
-            upvotesRef.runTransaction(new Transaction.Handler() {
-                @Override
-                public Transaction.Result doTransaction(MutableData currentData) {
-                    if (currentData.getValue() == null) {
-                        currentData.setValue(1);
-                    } else {
-                        currentData.setValue((Long) currentData.getValue() + 1);
-                    }
-
-                    return Transaction.success(currentData); //we can also abort by calling Transaction.abort()
-                }
-
-                @Override
-                public void onComplete(FirebaseError firebaseError, boolean committed, DataSnapshot currentData) {
-                    //This method will be called once with the results of the transaction.
-                }
-            });
         }
     }
 
