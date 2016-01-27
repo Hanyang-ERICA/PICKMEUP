@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Produce 101!</string>
+    <string name="action_settings">까꿍~</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_section1">사진</string>
+    <string name="title_section2">상세 프로필</string>
+    <string name="share">share</string>
+    <string name="facebook_app_id">459275814262278</string>
+    <string name="button_text">싫어요!</string>
+    <string name="button_text2">좋아요!</string>
+
+
+</resources>

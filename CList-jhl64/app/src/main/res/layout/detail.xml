@@ -1,0 +1,29 @@
+ <!--
+        v4 libs에 포함된 ViewPager이다.
+        기본적으로 LinearLayout로 동작한다.
+        android.support.v4.view.ViewPager 이 정의는 변경할 수 없다.
+        변경하실 것이라면 커스텀 Layout를 정의하셔야 합니다.
+        -->
+<android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/pager"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".activity.DetailActivity" >
+
+<!--
+Tabs의 경우에는 TitleStrip가 생성되지 않지만 Swipe Views는
+PagerTitleStrip가 아래 처럼 생성된다.
+-->
+
+<android.support.v4.view.PagerTitleStrip
+    android:id="@+id/pager_title_strip"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="top"
+    android:background="#33b5e5"
+    android:paddingBottom="4dp"
+    android:paddingTop="4dp"
+    android:textColor="#fff" />
+
+</android.support.v4.view.ViewPager>
