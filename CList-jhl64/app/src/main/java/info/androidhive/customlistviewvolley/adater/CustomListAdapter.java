@@ -20,22 +20,22 @@ import com.android.volley.toolbox.NetworkImageView;
 public class CustomListAdapter extends BaseAdapter {
 	private Activity activity;
 	private LayoutInflater inflater;
-	private List<Member> memberItems;
+	private List<Member> movieItems;
 	ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
-	public CustomListAdapter(Activity activity, List<Member> memberItems) {
+	public CustomListAdapter(Activity activity, List<Member> movieItems) {
 		this.activity = activity;
-		this.memberItems = memberItems;
+		this.movieItems = movieItems;
 	}
 
 	@Override
 	public int getCount() {
-		return memberItems.size();
+		return movieItems.size();
 	}
 
 	@Override
 	public Object getItem(int location) {
-		return memberItems.get(location);
+		return movieItems.get(location);
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class CustomListAdapter extends BaseAdapter {
 		TextView age = (TextView) convertView.findViewById(R.id.releaseYear);
 
 		// getting movie data for the row
-		Member m = memberItems.get(position);
+		Member m = movieItems.get(position);
 
 		// thumbnail image
 		image.setImageUrl(m.getImgurl(), imageLoader);
@@ -71,7 +71,7 @@ public class CustomListAdapter extends BaseAdapter {
 		catchphrase.setText(m.getCatchphrase());
 		name.setText(m.getName());
 		company.setText(m.getCompany());
-		age.setText(m.getAge());
+		age.setText(m.getIdolnum()+"번");
 
 		return convertView;
 	}

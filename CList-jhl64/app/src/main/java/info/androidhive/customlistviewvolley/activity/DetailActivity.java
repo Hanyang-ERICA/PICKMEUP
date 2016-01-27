@@ -1,6 +1,9 @@
 package info.androidhive.customlistviewvolley.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,25 +11,42 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
-import com.facebook.FacebookSdk;
-import com.facebook.share.model.ShareLinkContent;
-import com.facebook.share.widget.ShareButton;
-import com.firebase.client.Firebase;
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
 
 import info.androidhive.customlistviewvolley.R;
 import info.androidhive.customlistviewvolley.app.AppController;
 import info.androidhive.customlistviewvolley.util.CounterUtil;
+
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.widget.LikeView;
+import com.facebook.share.widget.ShareButton;
+
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.MutableData;
+import com.firebase.client.Transaction;
+
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 /**
  * Created by jaehalee on 2016. 1. 23..
@@ -180,6 +200,46 @@ public class DetailActivity extends FragmentActivity {
 // Inflate the layout for this fragment
             FacebookSdk.sdkInitialize(getApplicationContext());
             View view = inflater.inflate(R.layout.fragment_red, container, false);
+            TextView wcatchphrase;
+            TextView wname;
+            TextView wcompany;
+            TextView wage;
+            TextView wheight;
+            TextView wweight;
+            TextView wperiod;
+            TextView whobby;
+            TextView wtalent;
+            TextView wcomment;
+
+            Intent intent = getIntent();
+            String catchphrase = intent.getStringExtra("catchphrase");
+            String name = intent.getStringExtra("name");
+            String company = intent.getStringExtra("company");
+            String age = intent.getStringExtra("age");
+            String height = intent.getStringExtra("height");
+            String weight = intent.getStringExtra("weight");
+            String period = intent.getStringExtra("period");
+            String hobby = intent.getStringExtra("hobby");
+            String talent = intent.getStringExtra("talent");
+            String comment = intent.getStringExtra("comment");
+
+            wcatchphrase = (TextView) view.findViewById(R.id.catchphrase);
+            wcatchphrase.setText(catchphrase);
+            wname = (TextView) view.findViewById(R.id.name);
+            wname.setText("이름 : "+name+" 나이 : "+age);
+            wcompany = (TextView) view.findViewById(R.id.company);
+            wcompany.setText("소속사 : "+company);
+            wheight = (TextView) view.findViewById(R.id.height);
+            wheight.setText("신장 : "+height+" 체중 : "+weight);
+            wperiod = (TextView) view.findViewById(R.id.period);
+            wperiod.setText("연습기간 : "+period);
+            whobby = (TextView) view.findViewById(R.id.hobby);
+            whobby.setText("취미 : "+hobby);
+            wtalent = (TextView) view.findViewById(R.id.talent);
+            wtalent.setText("특기 : "+talent);
+            wcomment = (TextView) view.findViewById(R.id.comment);
+            wcomment.setText(comment);
+
 
             return view;
         }

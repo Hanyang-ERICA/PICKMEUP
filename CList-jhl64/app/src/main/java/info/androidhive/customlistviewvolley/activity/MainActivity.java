@@ -1,5 +1,17 @@
 package info.androidhive.customlistviewvolley.activity;
 
+import info.androidhive.customlistviewvolley.R;
+import info.androidhive.customlistviewvolley.adater.CustomListAdapter;
+import info.androidhive.customlistviewvolley.app.AppController;
+import info.androidhive.customlistviewvolley.model.Member;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -16,18 +28,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import info.androidhive.customlistviewvolley.R;
-import info.androidhive.customlistviewvolley.adater.CustomListAdapter;
-import info.androidhive.customlistviewvolley.app.AppController;
-import info.androidhive.customlistviewvolley.model.Member;
-
 public class MainActivity extends Activity {
 	// Log tag
 	private static final String TAG = MainActivity.class.getSimpleName();
@@ -35,7 +35,7 @@ public class MainActivity extends Activity {
 	// Movies json url
 	private static final String url = "http://52.192.111.80/data.php";
 	private ProgressDialog pDialog;
-	private List<Member> memberList = new ArrayList<Member>();
+	private List<Member> movieList = new ArrayList<Member>();
 	private ListView listView;
 	private CustomListAdapter adapter;
 
@@ -45,12 +45,12 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 		listView = (ListView) findViewById(R.id.list);
-		adapter = new CustomListAdapter(this, memberList);
+		adapter = new CustomListAdapter(this, movieList);
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				Member m = memberList.get(position);
+				Member m = movieList.get(position);
 				Intent intent = new Intent(MainActivity.this, DetailActivity.class);
 				intent.putExtra("catchphrase", m.getCatchphrase());
 				intent.putExtra("imgurl", m.getImgurl());
@@ -92,22 +92,23 @@ public class MainActivity extends Activity {
 							try {
 
 								JSONObject obj = response.getJSONObject(i);
-								Member member = new Member();
-								member.setCatchphrase(obj.getString("catchphrase"));
-								member.setImgurl(obj.getString("imgurl"));
-								member.setName(obj.getString("name"));
-								member.setNameurl(obj.getString("nameurl"));
-								member.setCompany(obj.getString("company"));
-								member.setAge(obj.getString("age"));
-								member.setHeight(obj.getString("height"));
-								member.setWeight(obj.getString("weight"));
-								member.setPeriod(obj.getString("period"));
-								member.setHobby(obj.getString("hobby"));
-								member.setTalent(obj.getString("talent"));
-								member.setComment(obj.getString("comment"));
+								Member movie = new Member();
+								movie.setCatchphrase(obj.getString("catchphrase"));
+								movie.setImgurl(obj.getString("imgurl"));
+								movie.setName(obj.getString("name"));
+								movie.setNameurl(obj.getString("nameurl"));
+								movie.setCompany(obj.getString("company"));
+								movie.setAge(obj.getString("age"));
+								movie.setHeight(obj.getString("height"));
+								movie.setWeight(obj.getString("weight"));
+								movie.setPeriod(obj.getString("period"));
+								movie.setHobby(obj.getString("hobby"));
+								movie.setTalent(obj.getString("talent"));
+								movie.setComment(obj.getString("comment"));
+								movie.setIdolnum(obj.getString("idolnum"));
 
-								// adding member to movies array
-								memberList.add(member);
+								// adding movie to movies array
+								movieList.add(movie);
 
 							} catch (JSONException e) {
 								e.printStackTrace();
