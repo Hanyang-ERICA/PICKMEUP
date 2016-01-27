@@ -2,7 +2,7 @@ package info.androidhive.customlistviewvolley.adater;
 
 import info.androidhive.customlistviewvolley.R;
 import info.androidhive.customlistviewvolley.app.AppController;
-import info.androidhive.customlistviewvolley.model.Movie;
+import info.androidhive.customlistviewvolley.model.Member;
 
 import java.util.List;
 
@@ -20,22 +20,22 @@ import com.android.volley.toolbox.NetworkImageView;
 public class CustomListAdapter extends BaseAdapter {
 	private Activity activity;
 	private LayoutInflater inflater;
-	private List<Movie> movieItems;
+	private List<Member> memberItems;
 	ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
-	public CustomListAdapter(Activity activity, List<Movie> movieItems) {
+	public CustomListAdapter(Activity activity, List<Member> memberItems) {
 		this.activity = activity;
-		this.movieItems = movieItems;
+		this.memberItems = memberItems;
 	}
 
 	@Override
 	public int getCount() {
-		return movieItems.size();
+		return memberItems.size();
 	}
 
 	@Override
 	public Object getItem(int location) {
-		return movieItems.get(location);
+		return memberItems.get(location);
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class CustomListAdapter extends BaseAdapter {
 		TextView age = (TextView) convertView.findViewById(R.id.releaseYear);
 
 		// getting movie data for the row
-		Movie m = movieItems.get(position);
+		Member m = memberItems.get(position);
 
 		// thumbnail image
 		image.setImageUrl(m.getImgurl(), imageLoader);
